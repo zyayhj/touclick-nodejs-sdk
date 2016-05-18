@@ -33,7 +33,7 @@ statusByCode = (function(){
 
 var md5 = (function () {
 	var crypto = require('crypto');
-	return funciton(content){
+	return function(content){
 		var md5Handle = crypto.createHash('md5');
 		md5Handle.update(content);
 		return md5Handle.digest('hex');
