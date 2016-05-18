@@ -135,6 +135,7 @@ module.exports  = {
         	callback(status.STATUS_HTTP_ERROR);
         }
 
-	}
-
+	},
+	sign: sign,
+	md5: md5
 };
