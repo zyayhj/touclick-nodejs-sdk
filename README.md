@@ -2,7 +2,7 @@
 
 #### DEMO
 
-DEMO ：[http://github.com/touclick/captcha-demo/nodejs-sdk](http://github.com/touclick/captcha-demo/nodejs-sdk "nodejs-demo")
+DEMO ：[http://github.com/touclick/captcha-demo/nodejs-demo](http://github.com/touclick/captcha-demo/nodejs-demo "nodejs-demo")
 
 #### 安装
 
