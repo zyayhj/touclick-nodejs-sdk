@@ -8,19 +8,19 @@
 var _pubkey,_prikey;
 var  HTTP = "http://", POSTFIX = ".touclick.com/sverify.touclick?";
 var status = {
-	STATUS_OK :             {code: 0, msg: '验证成功'},
-    STATUS_TOKEN_EXPIRED :  {code: 1, msg: '该验证已过期'},
-    STATUS_NO_PUBKEY_ERROR :{code: 2, msg: '公钥不可为空'},
-    STATUS_TOKEN_ERROR :    {code: 3, msg: '一次验证返回的token不可为空'},
-    STATUS_PUBKEY_ERROR :   {code: 4, msg: '公钥不正确或者checkCode与一次验证不符'},
-    CHECKCODE_ERROR :       {code: 5, msg: 'CheckCode有误,请确认CheckCode是否和一次验证传递一致'},
-    STATUS_PARAM_ERROR :    {code: 6, msg: 'sign加密错误,请检查参数是否正确'},
-    STATUS_VERIFY_ERROR :   {code: 7, msg: '一次验证错误'},
-    STATUS_SERVER_ERROR :   {code: 8, msg: '点触服务器异常'},
-    STATUS_HTTP_ERROR :     {code: 9, msg: 'http请求异常'},
-    STATUS_JSON_TRANS_ERROR:{code: 10,msg: 'json转换异常,可能是请求地址有误,请检查请求地址(http://sverify.touclick.com/sverify.touclick?参数'},
-    CHECKADDRESS_ERROR :    {code: 11,msg: '二次验证地址不合法'},
-    SIGN_ERROR :            {code: 12,msg: '签名校验失败,数据可能被篡改'}
+	STATUS_OK :             {code: 0, message: '验证成功'},
+    STATUS_TOKEN_EXPIRED :  {code: 1, message: '该验证已过期'},
+    STATUS_NO_PUBKEY_ERROR :{code: 2, message: '公钥不可为空'},
+    STATUS_TOKEN_ERROR :    {code: 3, message: '一次验证返回的token不可为空'},
+    STATUS_PUBKEY_ERROR :   {code: 4, message: '公钥不正确或者checkCode与一次验证不符'},
+    CHECKCODE_ERROR :       {code: 5, message: 'CheckCode有误,请确认CheckCode是否和一次验证传递一致'},
+    STATUS_PARAM_ERROR :    {code: 6, message: 'sign加密错误,请检查参数是否正确'},
+    STATUS_VERIFY_ERROR :   {code: 7, message: '一次验证错误'},
+    STATUS_SERVER_ERROR :   {code: 8, message: '点触服务器异常'},
+    STATUS_HTTP_ERROR :     {code: 9, message: 'http请求异常'},
+    STATUS_JSON_TRANS_ERROR:{code: 10,message: 'json转换异常,可能是请求地址有误,请检查请求地址(http://sverify.touclick.com/sverify.touclick?参数'},
+    CHECKADDRESS_ERROR :    {code: 11,message: '二次验证地址不合法'},
+    SIGN_ERROR :            {code: 12,message: '签名校验失败,数据可能被篡改'}
 },
 statusByCode = (function(){
 	var retArr = [];
