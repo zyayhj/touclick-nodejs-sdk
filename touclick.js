@@ -116,7 +116,7 @@ module.exports  = {
 							return status.SIGN_ERROR;
 						}
 						return statusByCode[res["code"]];
-					}else(res["code"] !== 0 ){
+					}else if(res["code"] !== 0 ){
 						logger.warn(res);
 						return statusByCode[res["code"]];
 					}else{
