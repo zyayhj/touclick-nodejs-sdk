@@ -44,12 +44,10 @@ $ npm install --save touclick-nodejs-sdk
 
 默认日志输出为ERROR，可以通过修改环境变量 `LOG4JS_LEVEL`，更改日志输出等级
 
-日志输出路径是 `logs/touclick.log`
+日志输出路径是 `touclick.log`
 
 ```javascript
 var logger = log4js.getLogger('touclick'),
 log4jsLevel = process.env.LOG4JS_LEVEL ||'ERROR';
 logger.setLevel(log4jsLevel);
 ```
-
-#### 

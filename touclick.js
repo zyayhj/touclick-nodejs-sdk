@@ -58,7 +58,7 @@ var request = require('request'), log4js = require('log4js'), qs = require('quer
 log4js.configure({
   appenders: [
     { type: 'console' },
-    { type: 'file', filename: 'logs/touclick.log', category: 'touclick' }
+    { type: 'file', filename: 'touclick.log', category: 'touclick' }
   ]
 });
 var logger = log4js.getLogger('touclick'),log4jsLevel = process.env.LOG4JS_LEVEL ||'ERROR';
@@ -84,7 +84,7 @@ module.exports  = {
 		if(!checkAddress || !/^[_\-0-9a-zA-Z]+$/.test(checkAddress) || !token){
 			return status.STATUS_HTTP_ERROR;
 		}
-		var params = {"ckcode": check_code, "i": token, "b": self.pub_key, "un": user_name, "ud": user_id, "ip": ""};
+		var params = {"ckcode": checkCode, "i": token, "b": _pubkey, "un": "", "ud": 0, "ip": ""};
 
         params["sign"] = sign(params, _prikey);
         var url = HTTP + checkAddress + POSTFIX;
