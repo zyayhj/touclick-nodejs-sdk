@@ -1,0 +1,29 @@
+{
+  "name": "touclick-nodejs-sdk",
+  "version": "1.0.0",
+  "description": "touclick nodejs sdk",
+  "main": "touclick.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/zyayhj/touclick-nodejs-sdk.git"
+  },
+  "keywords": [
+    "touclick",
+    "nodejs",
+    "captcha",
+    "sdk"
+  ],
+  "author": "delete",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zyayhj/touclick-nodejs-sdk/issues"
+  },
+  "homepage": "https://github.com/zyayhj/touclick-nodejs-sdk#readme",
+  "dependencies": {
+    "log4js": "^0.6.36",
+    "request": "^2.72.0"
+  }
+}
