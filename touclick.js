@@ -40,13 +40,13 @@ var md5 = (function () {
 	}
 })();
 
-var sign = (funciton(){
+var sign = (function(){
 	var keyArr = ["ckcode","i","b","un","ud","ip"];
 	keyArr.sort();
 
-	return funciton(params,prikey){
+	return function(params,prikey){
 		var signarr = [];
-		keyArr.forEach(funciton(val){
+		keyArr.forEach(function(val){
 			signarr.push(val + "=" + params[val]);
 		});
 		return md5(signarr.join("&") + prikey);
@@ -70,7 +70,7 @@ module.exports  = {
 	* @param prikey 私钥
 	* 在admin.touclick.com 中注册账号获取公钥与私钥
 	 */
-	init : funciton(pubkey, prikey){
+	init : function(pubkey, prikey){
 		_pubkey = pubkey;
 		_prikey = prikey;
 		return pubkey&&prikey;
@@ -80,7 +80,7 @@ module.exports  = {
 	* @param checkAddress 二次验证地址，二级域名
 	* @param checkCode 校验码，开发者自定义，一般采用手机号或者用户ID，用来更细致的频次控制
 	 */
-	check : funciton(token, checkAddress, checkCode){
+	check : function(token, checkAddress, checkCode){
 		if(!checkAddress || !/^[_\-0-9a-zA-Z]+$/.test(checkAddress) || !token){
 			return status.STATUS_HTTP_ERROR;
 		}
