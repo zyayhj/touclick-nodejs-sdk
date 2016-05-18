@@ -79,10 +79,11 @@ module.exports  = {
 	* @param token 二次验证口令，单次有效
 	* @param checkAddress 二次验证地址，二级域名
 	* @param checkCode 校验码，开发者自定义，一般采用手机号或者用户ID，用来更细致的频次控制
+	* @param callback 回调函数,参数：{code:0,message:'验证正确'}
 	 */
-	check : function(token, checkAddress, checkCode){
+	check : function(token, checkAddress, checkCode, callback){
 		if(!checkAddress || !/^[_\-0-9a-zA-Z]+$/.test(checkAddress) || !token){
-			return status.STATUS_HTTP_ERROR;
+			callback(status.STATUS_HTTP_ERROR);
 		}
 		var params = {"ckcode": checkCode, "i": token, "b": _pubkey, "un": "", "ud": 0, "ip": ""};
 
@@ -101,11 +102,11 @@ module.exports  = {
 					try{
 						res = JSON.parse(body);
 						if(!res){
-							return status.STATUS_JSON_TRANS_ERROR;
+							callback(status.STATUS_JSON_TRANS_ERROR);
 						}
 					}catch(e){
 						logger.error(error);
-						return status.STATUS_JSON_TRANS_ERROR;
+						callback(status.STATUS_JSON_TRANS_ERROR);
 					}
 
 					if(res["sign"]){
@@ -113,25 +114,25 @@ module.exports  = {
 						var localSign = md5(qs.stringify(checkParam) + _prikey);
 						logger.debug(localSign);
 						if(localSign !== res["sign"]){
-							return status.SIGN_ERROR;
+							callback(status.SIGN_ERROR);
 						}
-						return statusByCode[res["code"]];
+						callback(statusByCode[res["code"]]);
 					}else if(res["code"] !== 0 ){
 						logger.warn(res);
-						return statusByCode[res["code"]];
+						callback(statusByCode[res["code"]])
 					}else{
 						logger.error("STATUS_SERVER_ERROR : "+ status.STATUS_SERVER_ERROR);
-						return status.STATUS_SERVER_ERROR;
+						callback(status.STATUS_SERVER_ERROR);
 					}
 
 				}else{
 					logger.error(error);
-					return status.STATUS_HTTP_ERROR;
+					callback(status.STATUS_HTTP_ERROR);
 				}
 			})
         }catch(e){
         	logger.error(e);
-        	return status.STATUS_HTTP_ERROR;
+        	callback(status.STATUS_HTTP_ERROR);
         }
 
 	}
