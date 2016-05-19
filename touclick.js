@@ -30,18 +30,15 @@ statusByCode = (function(){
 	return retArr;
 })();
 
-
-var md5 = (function () {
-	var crypto = require('crypto');
-	return function(content){
-		var md5Handle = crypto.createHash('md5');
-		md5Handle.update(content);
-		return md5Handle.digest('hex');
-	}
-})();
+var crypto = require('crypto');
+var md5 = function(content){
+	var md5Handle = crypto.createHash('md5');
+	md5Handle.update(content);
+	return md5Handle.digest('hex');
+}
 
 var sign = (function(){
-	var keyArr = ["ckcode","i","b","un","ud","ip"];
+	var keyArr = ["ckcode","i","b","un","ud","ip","ran"];
 	keyArr.sort();
 
 	return function(params,prikey){
@@ -56,10 +53,10 @@ var sign = (function(){
 var request = require('request'), log4js = require('log4js'), qs = require('querystring');
 
 log4js.configure({
-  appenders: [
-    { type: 'console' },
-    { type: 'file', filename: 'touclick.log', category: 'touclick' }
-  ]
+    appenders: [
+    	{ type: 'console' },
+    	{ type: 'file', filename: 'touclick.log', category: 'touclick' }
+    ]
 });
 var logger = log4js.getLogger('touclick'),log4jsLevel = process.env.LOG4JS_LEVEL ||'ERROR';
 logger.setLevel(log4jsLevel);
@@ -85,7 +82,7 @@ module.exports  = {
 		if(!checkAddress || !/^[_\-0-9a-zA-Z]+$/.test(checkAddress) || !token){
 			callback(status.STATUS_HTTP_ERROR);
 		}
-		var params = {"ckcode": checkCode, "i": token, "b": _pubkey, "un": "", "ud": 0, "ip": ""};
+		var params = {"ckcode": checkCode, "i": token, "b": _pubkey, "un": "", "ud": 0, "ip": "",ran: crypto.randomBytes(24).toString('base64').replace(/\+|\//g,'0')};
 
         params["sign"] = sign(params, _prikey);
         var url = HTTP + checkAddress + POSTFIX;
@@ -110,7 +107,7 @@ module.exports  = {
 					}
 
 					if(res["sign"]){
-						var checkParam = {"code":res["code"],"timestamp":res["timestamp"]};//code 与 timestamp 的顺序不可以修改
+						var checkParam = {"code":res["code"],"timestamp":params["ran"]};//code 与 timestamp 的顺序不可以修改
 						var localSign = md5(qs.stringify(checkParam) + _prikey);
 						logger.debug(localSign);
 						if(localSign !== res["sign"]){
