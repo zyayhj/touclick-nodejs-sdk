@@ -8,7 +8,7 @@
 
 #### DEMO
 
-DEMO ：[http://github.com/touclick/captcha-demo/](https://github.com/touclick/captcha-demo/tree/master/nodejs-demo "nodejs-demo")
+DEMO ：[http://github.com/touclick/captcha-demo/](https://github.com/touclick/nodejs-demo "nodejs-demo")
 
 #### 安装
 
